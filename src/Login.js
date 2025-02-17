@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { auth } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig"; // Ensure Firestore is imported
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore"; // ✅ Import missing Firestore functions
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -13,23 +14,44 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log("Logged in User UID:", user.uid);
+  
+      // 🔍 Query Firestore to find user by email
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("email", "==", user.email));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        console.log("User Data from Firestore:", userData);
+  
+        if (userData.role === "agent") {
+          navigate("/agentdashboard");
+        } else {
+          navigate("/dashboard");
+        }
+      } else {
+        console.error("Firestore document not found for user.");
+        setError("User data not found in Firestore. Please contact support.");
+      }
     } catch (err) {
+      console.error("Login error:", err);
       setError("Invalid email or password. Please try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col"> {/* Flex column for header */}
-      <header className="bg-green-600 py-4 text-center text-white"> {/* Header styling */}
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      <header className="bg-green-600 py-4 text-center text-white">
         <h1 className="text-3xl font-bold">Ticket Management System</h1>
       </header>
 
-      <div className="flex-grow flex justify-center items-center"> {/* Center the form */}
-        <div className="bg-white p-8 rounded-2xl shadow-lg w-96 mt-8"> {/* Added margin-top */}
+      <div className="flex-grow flex justify-center items-center">
+        <div className="bg-white p-8 rounded-2xl shadow-lg w-96 mt-8">
           <h2 className="text-2xl font-bold text-center text-green-600">Login</h2>
 
           {error && <p className="text-red-500 text-center mt-2">{error}</p>}
