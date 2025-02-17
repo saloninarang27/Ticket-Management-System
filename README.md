@@ -77,7 +77,7 @@ A web application built with React and Firebase for managing customer support ti
     Firebase Authentication & Firestore: User authentication and ticket data storage.
     Deployment: The project is deployed on Firebase/Vercel for easy access.
 # Login/signup page
-    ![image](https://github.com/user-attachments/assets/d4ab3615-fac1-4762-b140-3668528b5eda)
+    ![Login Signup](assets/d4ab3615-fac1-4762-b140-3668528b5eda.png) 
 # Customer Dashboard
     ![image](https://github.com/user-attachments/assets/82f25083-04ae-493f-970b-9bfe9d2d5823)
     ![image](https://github.com/user-attachments/assets/bea8368a-5d13-4f17-87d8-fcf685354743)
