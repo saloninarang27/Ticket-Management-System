@@ -68,3 +68,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Ticket Management System
+A web application built with React and Firebase for managing customer support tickets. The system includes two roles: Customers and Support Agents. Customers can create and view their own tickets, while Agents can manage all tickets. The app includes features like:
+
+    Role-based access control: Different permissions for Customers and Support Agents.
+    Ticket creation and management: Customers can create tickets; Agents can update, close, and manage them.
+    Firebase Authentication & Firestore: User authentication and ticket data storage.
+    Deployment: The project is deployed on Firebase/Vercel for easy access.
+# Login/signup page
+    ![image](https://github.com/user-attachments/assets/d4ab3615-fac1-4762-b140-3668528b5eda)
+# Customer Dashboard
+    ![image](https://github.com/user-attachments/assets/82f25083-04ae-493f-970b-9bfe9d2d5823)
+    ![image](https://github.com/user-attachments/assets/bea8368a-5d13-4f17-87d8-fcf685354743)
+    ![image](https://github.com/user-attachments/assets/e6d9bf08-cda8-4096-ac56-5dc8b25ca992)
+# Agent Dashboard
+    ![image](https://github.com/user-attachments/assets/b3c3017b-6554-4b11-b270-4743f9b41de8)
+
+
+
+
